@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<ul class="mui-table-view">
+			<li class="mui-table-view-cell">
+				<a class="mui-navigate-right">
+					恭喜你获得八百万
+				</a>
+			</li>
+		</ul>
+		
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init({
+				beforeback:function(){
+				
+					var wid = plus.webview.getWebviewById('about.html');
+					
+					wid.reload(true);
+				}
+			})
+			var l = document.querySelector(".mui-table-view-cell")
+			l.addEventListener("tap", function() {
+				
+				mui.openWindow({
+					url: "Explanation.html",
+					id: "Explanation",
+					styles:{
+						    top:"45px",//新页面顶部位置
+						    bottom:"51px",//新页面底部位置
+				   	},
+				   	show:{
+				   	 		aniShow:"slide-in-top",
+				   	 	}
+				})
+			});
+		</script>
+	</body>
+
+</html>

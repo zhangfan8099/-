@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>Hello MUI</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link rel="stylesheet" href="css/mui.min.css">
+		<style>
+			body, html,#allmap {width: 100%;height: 100%;overflow: hidden;margin:0;font-family:"微软雅黑";}
+		</style>
+	</head>
+
+	<body>
+		<div id="allmap"></div>
+	</body>
+	<script src="js/mui.min.js"></script>
+		<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=cYsX6GVCbGoXSSlwxfP5mormGGHi22G9"></script>
+	<script>
+		mui.init({
+			swipeBack:true //启用右滑关闭功能
+		});
+		
+		document.addEventListener( "plusready", onPlusReady );
+		
+		function onPlusReady(){
+			plus.geolocation.getCurrentPosition(function(p){
+				var l1 = p.coords.longitude;
+				var l2 = p.coords.latitude;
+				var map = new BMap.Map("allmap"); 
+				map.centerAndZoom(new BMap.Point(l1, l2), 18);
+				map.addControl(new BMap.MapTypeControl());
+				map.setCurrentCity("北京");
+				map.enableScrollWheelZoom(true);
+			},function(e){
+				alert("失败")
+			})
+		}
+	</script>
+</html>

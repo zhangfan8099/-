@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Hello MUI</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link rel="stylesheet" href="css/mui.min.css">
+		<style>
+			html,body {
+				background-color: #efeff4;
+			}
+			.title{
+				margin: 20px 15px 10px;
+				color: #6d6d72;
+				font-size: 15px;
+			}
+			img{
+				width: 100%;
+				height: 100%;
+			}
+			/*.mui-btn-royal{
+				position: absolute;
+				left:50%;
+				top: 70%;
+				width: 70%;
+				margin-left: calc(-70% / 2);
+			}*/
+		</style>
+	</head>
+	<body>
+		<div class="mui-content">
+			<audio src="img/yx.mp3"id="sy"></audio>
+			<img src="img/zd.png" />
+			
+		</div>
+	</body>
+	<script src="js/mui.min.js"></script>
+	<script>
+		mui.init({
+			swipeBack:true //启用右滑关闭功能
+		});
+		var w = window.innerWidth;
+		var h = window.innerHeight;
+		document.addEventListener( "plusready", function(){
+		
+			var wid= plus.accelerometer.watchAcceleration( function ( a ) {
+			
+					
+				//console.log("x"+a.xAxis);
+//				console.log("y"+a.yAxis);
+//				console.log("z"+a.zAxis);
+				var x= a.xAxis;
+				//console.log(x)
+				//console.log(x);
+				
+				if(x<-15||x>15){
+					
+					mui("#sy")[0].play();
+					mui.openWindow({
+						 url:"shake.html",
+						 id:"shake",
+						 styles:{
+						    top:"45px",//新页面顶部位置
+						    bottom:"51px",//新页面底部位置
+				   	 	},
+				   	 	show:{
+				   	 		aniShow:"slide-in-top",
+				   	 	}
+				   	 	
+					})
+					plus.accelerometer.clearWatch( wid );
+					
+				}
+			})
+		},false)
+	</script>
+					
+						 
+				    
+				     
+				      
+			
+</html>
+			   
